@@ -22,7 +22,9 @@ app.use(cors({
     origin: process.env.FRONTEND_URL,
     credentials: true
 }))
-
+ app.get('/',(req,res)=>{
+    res.send("api is running");
+ })
 // const _dirname = path.resolve()
 
 // apis
