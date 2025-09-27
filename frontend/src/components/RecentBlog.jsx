@@ -7,7 +7,9 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { useNavigate } from 'react-router-dom';
 import { setBlog } from '@/redux/blogSlice';
-import axios from 'axios';
+
+// import axios from 'axios';
+import api from "../api/api"
 
 const tags = [
     {
@@ -25,24 +27,22 @@ const tags = [
     {
         category: "Photography"
     },
-    {
-        category: "Sports"
-    },
+   
 ]
 
 
 
 const RecentBlog = () => {
     const { blog } = useSelector(store => store.blog)
-    const [category, setCategory] = useState("")
+    // const [category, setCategory] = useState("")
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    console.log(blog);
+    // console.log(blog);
 
     useEffect(() => {
         const getAllPublsihedBlogs = async () => {
             try {
-                const res = await axios.get(`https://mern-blog-ha28.onrender.com/api/v1/blog/get-published-blogs`, { withCredentials: true })
+                const res = await api.get(`/blog/get-published-blogs`, { withCredentials: true })
                 if (res.data.success) {
                     dispatch(setBlog(res.data.blogs))
                 }

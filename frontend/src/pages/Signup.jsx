@@ -8,6 +8,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { toast } from 'sonner'
 import auth from "../assets/auth.jpg"
+import api from "../api/api"
 
 const Signup = () => {
 
@@ -32,11 +33,11 @@ const Signup = () => {
         console.log(user)
 
         try {
-            const response = await axios.post(`https://mern-blog-ha28.onrender.com/api/v1/user/register`, user, {
+            const response = await api.post(`/user/register`, user, {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                withCredentials: true,
+
             });
             if (response.data.success) {
                 navigate('/login')
@@ -51,28 +52,7 @@ const Signup = () => {
 
         }
 
-        // try {
-        //     dispatch(setLoading(true))
-        //     const response = await axios.post("", user, {
-        //         headers: {
-        //             "Content-Type": "application/json",
-        //         },
-        //         withCredentials: true,
-        //     });
-        //     if (response.data.success) {
-        //         navigate('/login')
-        //         toast.success(response.data.message)
-        //         // setFormData({ name: "", email: "", password: "", role: "" });
-        //     } else {
-        //         toast(`Error: ${data.message || "Something went wrong"}`);
-        //     }
-        // } catch (error) {
-        //     // toast.error(error.response.data.message);
-        //     console.log(error);
-
-        // } finally {
-        //     dispatch(setLoading(false))
-        // }
+    
     };
 
     const [showPassword, setShowPassword] = useState(false);
@@ -80,7 +60,7 @@ const Signup = () => {
     return (
         <div className="flex  h-screen md:pt-14 md:h-[760px] ">
             <div className='hidden md:block'>
-                <img src={auth} alt="" className='h-[700px]'  />
+                <img src={auth} alt="" className='h-[700px]' />
             </div>
             <div className='flex justify-center items-center flex-1 px-4 md:px-0'>
                 <Card className="w-full max-w-md p-6 shadow-lg rounded-2xl dark:bg-gray-800 dark:border-gray-600">

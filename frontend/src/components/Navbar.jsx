@@ -2,32 +2,28 @@ import React, { useState } from 'react'
 import { Button } from './ui/button'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { Input } from './ui/input'
-import Logo from "../assets/logo.png"
+import Logo from "../assets/kyt.png"
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'sonner'
-import axios from 'axios'
+
 import { setUser } from '@/redux/authSlice'
 import userLogo from "../assets/user.jpg"
 import { HiMenuAlt1, HiMenuAlt3 } from "react-icons/hi";
 import {
     ChartColumnBig,
-    Cloud,
-    CreditCard,
-    Github,
-    Keyboard,
-    LifeBuoy,
+   
+   
     LogOut,
-    Mail,
-    MessageSquare,
-    Plus,
-    PlusCircle,
+   
+  
     Search,
-    Settings,
+   
     User,
-    UserPlus,
-    Users,
+    
 } from "lucide-react"
+
+import api from "@/api/api";
 
 import {
     DropdownMenu,
@@ -53,22 +49,26 @@ const Navbar = () => {
     const dispatch = useDispatch()
     // const user = false;
 
-    const logoutHandler = async (e) => {
+  const logoutHandler = async () => {
+  try {
+    const res = await api.get("/user/logout"); // ✅ now using api instance
+    if (res.data.success) {
+      // remove token
+      localStorage.removeItem("token");
 
-        try {
-            const res = await axios.get(`https://mern-blog-ha28.onrender.com/api/v1/user/logout`, { withCredentials: true });
-            if (res.data.success) {
-                navigate("/")
-                dispatch(setUser(null))
-                toast.success(res.data.message)
-            }
-        } catch (error) {
-            console.log(error);
-            toast.error(error.response.data.message)
+      // reset redux state
+      dispatch(setUser(null));
 
-        }
+      // navigate to home
+      navigate("/");
+
+      toast.success(res.data.message);
     }
-
+  } catch (error) {
+    console.log(error);
+    toast.error(error.response?.data?.message || "Logout failed");
+  }
+};
     const handleSearch = (e) => {
         e.preventDefault();
         if (searchTerm.trim() !== '') {
@@ -77,7 +77,7 @@ const Navbar = () => {
         }
     };
 
-    const toggleNav = ()=>{
+    const toggleNav = () => {
         setOpenNav(!openNav)
     }
     return (
@@ -88,7 +88,7 @@ const Navbar = () => {
                     <Link to={'/'}>
                         <div className='flex gap-2 items-center'>
                             <img src={Logo} alt="" className='w-7 h-7 md:w-10 md:h-10 dark:invert' />
-                            <h1 className='font-bold text-3xl md:text-4xl'>Logo</h1>
+                            <h1 className='font-bold text-3xl md:text-4xl'>Ajay</h1>
                         </div>
                     </Link>
                     <div className='relative hidden md:block'>
@@ -172,7 +172,7 @@ const Navbar = () => {
                     }
 
                 </nav>
-                <ResponsiveMenu openNav={openNav} setOpenNav={setOpenNav} logoutHandler={logoutHandler}/>
+                <ResponsiveMenu openNav={openNav} setOpenNav={setOpenNav} logoutHandler={logoutHandler} />
             </div>
         </div>
     )

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link,NavLink } from 'react-router-dom'
 import Logo from '../assets/logo.png'
 import { FaFacebook, FaInstagram, FaPinterest, FaTwitterSquare } from 'react-icons/fa'
 
@@ -15,19 +15,18 @@ const Footer = () => {
               <h1 className=' text-3xl font-bold'>Logo</h1>
             </Link>
             <p className='mt-2'>Sharing insights, tutorials, and ideas on web development and tech.</p>
-            <p className='mt-2 text-sm'>123 Blog St, Style City, NY 10001</p>
-            <p className='text-sm'>Email: support@blog.com</p>
-            <p className='text-sm'>Phone: (123) 456-7890</p>
+            <p className='mt-2 text-sm'>123 Blog St, Noida City, India</p>
+            <p className='text-sm'>Email: ajay@gmail.com</p>
+            <p className='text-sm'>Phone: +91 9120989783</p>
         </div>
         {/* customer service link */}
         <div className='mb-6 md:mb-0'>
             <h3 className='text-xl font-semibold'>Quick Links</h3>
             <ul className='mt-2 text-sm space-y-2'>
-                <li>Home</li>
-                <li>Blogs</li>
-                <li>About Us</li>
-                {/* <li>Contact Us</li> */}
-                <li>FAQs</li>
+              <NavLink to={'/'} className="cursor-pointer"><li>Home</li></NavLink>
+                        <NavLink to={'/blogs'} className={`cursor-pointer`}><li>Blogs</li></NavLink>
+                        <NavLink to={'/about'} className={`cursor-pointer`}><li>About</li></NavLink>
+               
             </ul>
         </div>
         {/* social media links */}
