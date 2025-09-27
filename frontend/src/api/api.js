@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://backend-69mt.onrender.com",
+  baseURL: "https://my-blog-5vii-owpunw7e4-ajay-guptas-projects.vercel.app",
 });
 
 // Request interceptor to attach token
