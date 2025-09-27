@@ -15,49 +15,47 @@ const PORT = process.env.PORT || 3000;
 // ---------------------
 // Middleware
 // ---------------------
-
-// Parse JSON and URL-encoded data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// Cookie parser
 app.use(cookieParser());
 
-// CORS configuration
+// CORS
 const allowedOrigins = [
-  process.env.FRONTEND_URL,          // your deployed frontend
-  "http://localhost:5173",           // local dev frontend
-  "http://localhost:3000"            // optional if testing backend locally
+  process.env.FRONTEND_URL,
+  "http://localhost:5173"
 ];
 
 app.use(cors({
   origin: function(origin, callback) {
-    // allow requests with no origin (like Postman)
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
-      const msg = "The CORS policy for this site does not allow access from the specified Origin.";
+    if (!origin) return callback(null, true); // allow Postman or curl
+    if (!allowedOrigins.includes(origin)) {
+      const msg = "CORS policy does not allow this origin.";
       return callback(new Error(msg), false);
     }
     return callback(null, true);
   },
-  credentials: true, // allow cookies
+  credentials: true,
+}));
+
+// Handle OPTIONS requests for all routes
+app.options("*", cors({
+  origin: allowedOrigins,
+  credentials: true
 }));
 
 // ---------------------
 // Routes
 // ---------------------
-
 app.get("/", (req, res) => {
   res.send("API is running");
 });
 
-// API routes
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/blog", blogRoute);
 app.use("/api/v1/comment", commentRoute);
 
 // ---------------------
-// Server start
+// Start Server
 // ---------------------
 app.listen(PORT, async () => {
   console.log(`Server listening at port ${PORT}`);
