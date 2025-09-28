@@ -23,7 +23,6 @@ app.use(cookieParser());
 const allowedOrigins = [
   process.env.FRONTEND_URL,
   "http://localhost:5173",
-  "https://my-blog-eight-ashy-77.vercel.app",
 ];
 
 app.use(
