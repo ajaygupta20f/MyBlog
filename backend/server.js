@@ -22,26 +22,32 @@ app.use(cookieParser());
 // CORS
 const allowedOrigins = [
   process.env.FRONTEND_URL,
-  "http://localhost:5173"
+  "http://localhost:5173",
+  "https://my-blog-eight-ashy-77.vercel.app",
 ];
 
-app.use(cors({
-  origin: function(origin, callback) {
-    if (!origin) return callback(null, true); // allow Postman or curl
-    if (!allowedOrigins.includes(origin)) {
-      const msg = "CORS policy does not allow this origin.";
-      return callback(new Error(msg), false);
-    }
-    return callback(null, true);
-  },
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true); // allow Postman or curl
+      if (!allowedOrigins.includes(origin)) {
+        const msg = "CORS policy does not allow this origin.";
+        return callback(new Error(msg), false);
+      }
+      return callback(null, true);
+    },
+    credentials: true,
+  })
+);
 
 // Handle OPTIONS requests for all routes
-app.options("*", cors({
-  origin: allowedOrigins,
-  credentials: true
-}));
+app.options(
+  "*",
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+  })
+);
 
 // ---------------------
 // Routes
