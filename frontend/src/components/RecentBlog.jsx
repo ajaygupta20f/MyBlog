@@ -42,7 +42,8 @@ const RecentBlog = () => {
     useEffect(() => {
         const getAllPublsihedBlogs = async () => {
             try {
-                const res = await api.get(`/blog/get-published-blogs`, { withCredentials: true })
+                const res = await api.get(`/blog/get-published-blogs`);
+                console.log("RES",res);
                 if (res.data.success) {
                     dispatch(setBlog(res.data.blogs))
                 }

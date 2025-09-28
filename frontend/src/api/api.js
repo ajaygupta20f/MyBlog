@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://my-blog-5vii-owpunw7e4-ajay-guptas-projects.vercel.app",
+  baseURL: "http://localhost:3000/api/v1",
 });
 
 // Request interceptor to attach token

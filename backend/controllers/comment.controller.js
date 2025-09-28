@@ -40,7 +40,7 @@ export const createComment = async (req, res) => {
 export const getCommentsOfPost = async (req, res) => {
   try {
     const blogId = req.params.id;
-    const comments = await Comment.find({ postId: blogId }).populate({ path: 'userId', select: 'firstName lastName photoUrl' }).sort({ createdAt: -1 })
+    const comments = await Comment.find({ postId: blogId }).sort({ createdAt: -1 })
 
     if (!comments) return res.status(404).json({ message: 'No comments found for this blog', success: false })
     return res.status(200).json({

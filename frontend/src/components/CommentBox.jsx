@@ -47,28 +47,28 @@ const CommentBox = ({ selectedBlog }) => {
   useEffect(() => {
     const getAllCommentsOfBlog = async () => {
       try {
-        const res = await api.get(`/comment/${selectedBlog._id}/comment/all`);
+        const res = await api.get(`/comment/${selectedBlog?._id}/comment/all`);
         dispatch(setComment(res.data.comments));
       } catch (error) {
         console.log(error);
       }
     };
     getAllCommentsOfBlog();
-  }, [selectedBlog._id, dispatch]);
+  }, [selectedBlog?._id, dispatch]);
 
   // Add comment
   const commentHandler = async () => {
     if (!content) return;
 
     try {
-      const res = await api.post(`/comment/${selectedBlog._id}/create`, { content });
+      const res = await api.post(`/comment/${selectedBlog?._id}/create`, { content });
 
       if (res.data.success) {
         const updatedCommentData = [...comment, res.data.comment];
         dispatch(setComment(updatedCommentData));
 
         const updatedBlogData = blog.map(p =>
-          p._id === selectedBlog._id ? { ...p, comments: updatedCommentData } : p
+          p?._id === selectedBlog?._id ? { ...p, comments: updatedCommentData } : p
         );
         dispatch(setBlog(updatedBlogData));
 
@@ -77,7 +77,7 @@ const CommentBox = ({ selectedBlog }) => {
       }
     } catch (error) {
       console.log(error);
-      toast.error("Failed to add comment");
+      toast.error("You must be logged in to comment!");
     }
   };
 
@@ -91,7 +91,7 @@ const CommentBox = ({ selectedBlog }) => {
       if (res.data.success) {
         // Update only the parent comment with new replies
         const updatedCommentData = comment.map(item =>
-          item._id === parentCommentId ? res.data.updatedComment : item
+          item?._id === parentCommentId ? res.data.updatedComment : item
         );
         dispatch(setComment(updatedCommentData));
 
@@ -110,7 +110,7 @@ const CommentBox = ({ selectedBlog }) => {
     try {
       const res = await api.delete(`/comment/${commentId}/delete`);
       if (res.data.success) {
-        const updatedCommentData = comment.filter(item => item._id !== commentId);
+        const updatedCommentData = comment.filter(item => item?._id !== commentId);
         dispatch(setComment(updatedCommentData));
         toast.success(res.data.message);
       }
@@ -128,7 +128,7 @@ const CommentBox = ({ selectedBlog }) => {
       const res = await api.put(`/comment/${commentId}/edit`, { content: editedContent });
       if (res.data.success) {
         const updatedCommentData = comment.map(item =>
-          item._id === commentId ? { ...item, content: editedContent } : item
+          item?._id === commentId ? { ...item, content: editedContent } : item
         );
         dispatch(setComment(updatedCommentData));
         toast.success(res.data.message);
@@ -147,27 +147,27 @@ const CommentBox = ({ selectedBlog }) => {
       const res = await api.get(`/comment/${commentId}/like`);
       if (res.data.success) {
         const updatedCommentList = comment.map(item =>
-          item._id === commentId ? res.data.updatedComment : item
+          item?._id === commentId ? res.data.updatedComment : item
         );
         dispatch(setComment(updatedCommentList));
         toast.success(res.data.message);
       }
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong");
+      toast.error("You must be logged in to like!");
     }
   };
 
   return (
     <div>
       {/* Comment input box */}
-      <div className='flex gap-4 mb-4 items-center'>
+      {/* <div className='flex gap-4 mb-4 items-center'>
         <Avatar>
           <AvatarImage src={user.photoUrl} />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
         <h3 className='font-semibold'>{user.firstName} {user.lastName}</h3>
-      </div>
+      </div> */}
 
       <div className='flex gap-3'>
         <Textarea
@@ -183,7 +183,7 @@ const CommentBox = ({ selectedBlog }) => {
       {comment.length > 0 && (
         <div className='mt-7 bg-gray-100 dark:bg-gray-800 p-5 rounded-md'>
           {comment.map((item) => (
-            <div key={item._id} className='mb-4'>
+            <div key={item?._id} className='mb-4'>
               <div className='flex items-center justify-between'>
                 <div className='flex gap-3 items-start'>
                   <Avatar>
@@ -196,7 +196,7 @@ const CommentBox = ({ selectedBlog }) => {
                       {/* <span className='text-sm ml-2 font-light'>yesterday</span> */}
                     </h1>
 
-                    {editingCommentId === item._id ? (
+                    {editingCommentId === item?._id ? (
                       <>
                         <Textarea
                           value={editedContent}
@@ -204,7 +204,7 @@ const CommentBox = ({ selectedBlog }) => {
                           className="mb-2 bg-gray-200 dark:bg-gray-700"
                         />
                         <div className="flex py-1 gap-2">
-                          <Button size="sm" onClick={() => editCommentHandler(item._id)}>Save</Button>
+                          <Button size="sm" onClick={() => editCommentHandler(item?._id)}>Save</Button>
                           <Button size="sm" variant="outline" onClick={() => setEditingCommentId(null)}>Cancel</Button>
                         </div>
                       </>
@@ -214,32 +214,32 @@ const CommentBox = ({ selectedBlog }) => {
 
                     <div className='flex gap-5 items-center'>
                       <div className='flex gap-2 items-center'>
-                        <div className='flex gap-1 items-center cursor-pointer' onClick={() => likeCommentHandler(item._id)}>
-                          {item.likes.includes(user._id) ? <FaHeart fill='red' /> : <FaRegHeart />}
+                        <div className='flex gap-1 items-center cursor-pointer' onClick={() => likeCommentHandler(item?._id)}>
+                          {item.likes.includes(user?._id) ? <FaHeart fill='red' /> : <FaRegHeart />}
                           <span>{item.numberOfLikes}</span>
                         </div>
                       </div>
-                      {/* <p onClick={() => handleReplyClick(item._id)} className='text-sm cursor-pointer'>Reply</p> */}
+                      {/* <p onClick={() => handleReplyClick(item?._id)} className='text-sm cursor-pointer'>Reply</p> */}
                     </div>
                   </div>
                 </div>
 
-                {user._id === item?.userId?._id && (
+                {user?._id === item?.userId?._id && (
                   <DropdownMenu>
                     <DropdownMenuTrigger><BsThreeDots /></DropdownMenuTrigger>
                     <DropdownMenuContent className="w-[180px]">
                       <DropdownMenuItem onClick={() => {
-                        setEditingCommentId(item._id);
+                        setEditingCommentId(item?._id);
                         setEditedContent(item.content);
                       }}><Edit /> Edit</DropdownMenuItem>
-                      <DropdownMenuItem className="text-red-500" onClick={() => deleteComment(item._id)}><Trash2 /> Delete</DropdownMenuItem>
+                      <DropdownMenuItem className="text-red-500" onClick={() => deleteComment(item?._id)}><Trash2 /> Delete</DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
                 )}
               </div>
 
               {/* Reply box */}
-              {activeReplyId === item._id && (
+              {activeReplyId === item?._id && (
                 <div className='flex gap-3 w-full px-10 mt-2'>
                   <Textarea
                     placeholder="Reply here ..."
@@ -247,7 +247,7 @@ const CommentBox = ({ selectedBlog }) => {
                     onChange={(e) => setReplyText(e.target.value)}
                     value={replyText}
                   />
-                  <Button onClick={() => replyHandler(item._id)}><LuSend /></Button>
+                  <Button onClick={() => replyHandler(item?._id)}><LuSend /></Button>
                 </div>
               )}
             </div>
