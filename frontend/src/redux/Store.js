@@ -1,13 +1,4 @@
-// import { configureStore } from '@reduxjs/toolkit'
-// import authSlice from "./authSlice"
 
-// const store = configureStore({
-//   reducer: {
-//    auth:authSlice
-//   },
-// })
-
-// export default store
 
 
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
@@ -26,8 +17,7 @@ import {
   REGISTER,
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-// import companySlice from "./companySlice";
-// import applicationSlice from "./applicationSlice";
+
 
 const persistConfig = {
     key: 'root',

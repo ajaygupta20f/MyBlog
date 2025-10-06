@@ -5,6 +5,7 @@ import { Navigate } from 'react-router-dom'
 
 const ProtectedRoute = ({children}) => {
     const {user} = useSelector(store=>store.auth)
+      {/* add */}
   return (
     <div>
       {

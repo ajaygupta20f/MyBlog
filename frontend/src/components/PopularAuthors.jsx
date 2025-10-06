@@ -26,6 +26,7 @@ const PopularAuthors = () => {
                     <h1 className='text-3xl md:text-4xl font-bold pt-10 '>Popular Authors</h1>
                     <hr className=' w-24 text-center border-2 border-red-500 rounded-full' />
                 </div>
+                {/* add */}
                 <div className='flex items-center justify-around my-10 px-4 md:px-0'>
                     {
                         popularUser?.slice(0, 3)?.map((user, index) => {

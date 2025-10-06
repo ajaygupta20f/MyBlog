@@ -1,4 +1,4 @@
-import React from 'react'
+
 import heroImg from "../assets/blog2.png"
 import { Button } from './ui/button'
 import { Link } from 'react-router-dom'
@@ -13,11 +13,13 @@ const Hero = () => {
         <p className="text-lg md:text-xl opacity-80 mb-6 ">
           Stay ahead with in-depth articles, tutorials, and insights on web development, digital marketing, and tech innovations.
         </p>
+        
         <div className="flex space-x-4">
           <Link to={"/dashboard/write-blog"}><Button className="text-lg ">Get Started</Button></Link>
           <Link to={"/about"}><Button variant="outline" className="border-white px-6 py-3 text-lg">Learn More</Button></Link>
         </div>
       </div>
+     
         {/* image section */}
         <div className=' flex items-center justify-center '>
             <img src={heroImg} alt="" className='md:h-[550px] md:w-[550px]'/>

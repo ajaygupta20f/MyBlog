@@ -37,7 +37,7 @@ const RecentBlog = () => {
     // const [category, setCategory] = useState("")
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    // console.log(blog);
+  
 
     useEffect(() => {
         const getAllPublsihedBlogs = async () => {

@@ -14,7 +14,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Bookmark, Share2, MessageSquare } from 'lucide-react';
 import CommentBox from '@/components/CommentBox';
-import API from "@/api/api"; // ✅ centralized API import
+import API from "@/api/api"; 
 import { FaHeart, FaRegHeart } from 'react-icons/fa6';
 import { setBlog } from '@/redux/blogSlice';
 import { toast } from 'sonner';

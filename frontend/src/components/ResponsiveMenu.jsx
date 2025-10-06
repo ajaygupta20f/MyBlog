@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 
 const ResponsiveMenu = ({ openNav, setOpenNav, logoutHandler }) => {
     const {user} = useSelector(store=>store.auth)
-
+  {/* add */}
     return (
         <div className={`${openNav ? "left-0" : "-left-[100%]"} fixed bottom-0 top-0 z-20 flex h-screen w-[75%] flex-col justify-between bg-white dark:bg-gray-800 px-8 pb-6 pt-16 text-black dark:text-gray-100 md:hidden rounded-r-xl shadow-md transition-all`}>
             <div>

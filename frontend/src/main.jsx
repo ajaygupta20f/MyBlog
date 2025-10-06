@@ -10,7 +10,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 import ThemeProvider from './components/ThemeProvider'
 
 const persistor = persistStore(store)
-
+  {/* add */}
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>

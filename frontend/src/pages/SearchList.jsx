@@ -26,7 +26,7 @@ const SearchList = () => {
         <div className='pt-32'>
             <div className='max-w-6xl mx-auto'>
                 <h2 className='mb-5'>Search Results for: "{query}"</h2>
-                {/* Here you can fetch data or display filtered results based on the query */}
+             
                 <div className='grid grid-cols-3 gap-7 my-10'>
                     {
                         filteredBlogs.map((blog, index) => {

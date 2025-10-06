@@ -1,3 +1,4 @@
+  {/* add */}
 export default {
   plugins: {
     tailwindcss: {},

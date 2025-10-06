@@ -22,7 +22,7 @@ import { toast } from 'sonner'
 import { setUser } from '@/redux/authSlice'
 import TotalProperty from '@/components/TotalProperty'
 
-// ✅ import centralized api
+
 import api from "../api/api"
 
 const Profile = () => {

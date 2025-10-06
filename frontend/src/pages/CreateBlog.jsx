@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import { Loader2 } from 'lucide-react';
-import api from '@/api/api'; // Axios instance with token interceptor
+import api from '@/api/api';
 
 const CreateBlog = () => {
     const [loading, setLoading] = useState(false);

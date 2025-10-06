@@ -2,7 +2,7 @@ import BlogCard from '@/components/BlogCard';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setBlog } from '@/redux/blogSlice';
-import API from "@/api/api" // ✅ centralized API import
+import API from "@/api/api" 
 import { toast } from 'sonner';
 import LMS from "../assets/LMS.png";
 

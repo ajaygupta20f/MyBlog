@@ -10,7 +10,7 @@ const Comments = () => {
     const [allComments, setAllComments] = useState([]);
     const navigate = useNavigate();
 
-    // Fetch all comments for user's blogs
+    
     const getTotalComments = async () => {
         try {
             const res = await API.get('/comment/my-blogs/comments');

@@ -47,7 +47,7 @@ const Navbar = () => {
     const [openNav, setOpenNav] = useState(false)
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    // const user = false;
+   
 
   const logoutHandler = async () => {
   try {

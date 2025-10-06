@@ -9,7 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { useDispatch } from "react-redux";
 import { setUser } from "@/redux/authSlice";
-import auth from "../assets/auth.jpg";
+import auth from "../assets/auths.jpg";
 import api from "../api/api";
 
 const Login = () => {

@@ -1,4 +1,6 @@
+ 
 {
+  
   "$schema": "https://ui.shadcn.com/schema.json",
   "style": "new-york",
   "rsc": false,
@@ -8,7 +10,7 @@
     "css": "src/index.css",
     "baseColor": "slate",
     "cssVariables": true,
-    "prefix": ""
+    "prefix": " "
   },
   "aliases": {
     "components": "@/components",
