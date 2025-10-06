@@ -25,3 +25,33 @@ Users can **create, read, update, and delete (CRUD)** blog posts with an intuiti
  Responsive and Clean UI  
  Secure API using JWT  
  Persistent Data Storage in MongoDB 
+
+ ## Tools & Libraries Used
+
+React Router DOM
+
+Axios
+
+Mongoose
+
+bcryptjs
+
+jsonwebtoken
+
+dotenv
+
+cors
+
+Tailwind CSS
+
+Vite
+
+
+## Run Application
+
+cd backend
+npm start
+
+cd ../frontend
+npm run dev
+
