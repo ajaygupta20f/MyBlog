@@ -18,7 +18,8 @@ const SearchList = () => {
             blog.subtitle.toLowerCase().includes(query) ||
             blog.category.toLowerCase() === query.toLowerCase()
     );
-   
+     {/* add */}
+     
     useEffect(()=>{
         window.scrollTo(0,0)
     },[])

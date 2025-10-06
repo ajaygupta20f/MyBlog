@@ -31,7 +31,7 @@ const persistConfig = {
     theme: themeSlice,
   })
   const persistedReducer = persistReducer(persistConfig, rootReducer)
-
+  {/* add */}
 
 const store = configureStore({
     reducer: persistedReducer,

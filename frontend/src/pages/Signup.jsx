@@ -6,7 +6,7 @@ import React, { useState } from 'react'
 import { Eye, EyeOff } from "lucide-react";
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
-import auth from "../assets/auth.jpg"
+import auth from "../assets/auths.jpg"
 import api from "../api/api"
 
 const Signup = () => {
