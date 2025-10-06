@@ -5,6 +5,7 @@ import { singleUpload } from "../middleware/multer.js"
 
 const router = express.Router()
 
+// user route setup
 router.route("/register").post(register)
 router.route("/login").post(login)
 router.route("/logout").get(logout)

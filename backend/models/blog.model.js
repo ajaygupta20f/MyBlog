@@ -7,11 +7,11 @@ const blogSchema = new mongoose.Schema({
     },
     subtitle: {
         type: String,
-        // required: true
+
     },
     description: {
         type: String,
-        // required:true
+       
     },
     thumbnail: {
         type: String,
@@ -26,10 +26,7 @@ const blogSchema = new mongoose.Schema({
     },
     likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
-    isPublished:{
-        type:Boolean,
-        default:false
-    }
+  
 
 
 }, { timestamps: true })

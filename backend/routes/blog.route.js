@@ -6,6 +6,8 @@ import {createBlog, deleteBlog, dislikeBlog, getAllBlogs, getMyTotalBlogLikes, g
 
 const router = express.Router()
 
+//blog router setup
+
 router.route("/").post(isAuthenticated, createBlog)
 router.route("/:blogId").put(isAuthenticated, singleUpload, updateBlog)
 router.route("/:blogId").patch(togglePublishBlog);

@@ -5,6 +5,8 @@ import { createComment, deleteComment, editComment, getAllCommentsOnMyBlogs, get
 
 const router = express.Router()
 
+// comment router setup
+
 router.post('/:id/create', isAuthenticated, createComment);
 router.delete("/:id/delete", isAuthenticated, deleteComment);
 router.put("/:id/edit", isAuthenticated, editComment);
